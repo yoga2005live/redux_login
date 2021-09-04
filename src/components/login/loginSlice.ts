@@ -1,13 +1,15 @@
 interface loginUiComponent {
-    name?:String;
-    blog?:String;
-    following_url?:String;
-    followers?:number;
+    loginTextHeader?: String;
+    loginUserLabel?: String;
+    loginPassLabel?: String;
+    loginLeftBtn?: String;
+    loginRightBtn?: String;
 }
 
 export const initialState: loginUiComponent = {
-    name: "",
-    blog: "",
-    following_url: "",
-    followers: -1
+    loginTextHeader: "",
+    loginUserLabel: "",
+    loginPassLabel: "",
+    loginLeftBtn: "",
+    loginRightBtn: ""
 };
