@@ -5,59 +5,46 @@ import styles from "./Login.module.css";
 
 export function Login() {
 
-    const gitHubUrl = "https://api.github.com/users/deekshasharma";
+    // const gitHubUrl = "https://api.github.com/users/deekshasharma";
+    const slelectorLoginCriteria = "http://18.118.120.121:1337/slelector-login-criteria/001";
 
     useEffect(() => {
-        getGitHubUserWithFetch();
+        getLoginConfiguration();
     }, []);
 
-    const getGitHubUserWithFetch = async () => {
-        const response = await fetch(gitHubUrl);
+    const getLoginConfiguration = async () => {
+        const response = await fetch(slelectorLoginCriteria);
         const jsonData = await response.json();
         setLoginUiComponent(jsonData);
     };
 
     const [loginUiComponent, setLoginUiComponent] = useState(initialState);
+    // console.log(loginUiComponent);
+    const options: any[] = [];
+    loginUiComponent.selector_login_criteria_values?.map(function (obj) {
+        options.push((<option value={obj.Name}>{obj.Name}</option>));
+    });
 
     return (
         <div className={styles.Login}>
 
             <div className={styles.box}>
                 <div className={styles.title}>
-                    <b>Dashboard</b>
+                    <b>Login</b>
                 </div>
-                {/*<input type="email" name="email" value="email" onFocus="field_focus(this, 'email');"*/}
-                {/*       onblur="field_blur(this, 'email');" className={styles.email}/>*/}
-
-                {/*<input type="email" name="email" value="email" onFocus={() => {*/}
-                {/*    console.log("email onFocus")*/}
-                {/*}} onBlur={() => {*/}
-                {/*    console.log("email onBlur")*/}
-                {/*}} className={styles.email}/>*/}
-
-                {/*<label className={styles.email} htmlFor="cars">Choose a car:</label>*/}
-                {/*<select className={styles.email} name="cars" id="cars">*/}
-                {/*    <option value="volvo">Volvo</option>*/}
-                {/*    <option value="saab">Saab</option>*/}
-                {/*    <option value="mercedes">Mercedes</option>*/}
-                {/*    <option value="audi">Audi</option>*/}
-                {/*</select>*/}
                 <div>
-                    <label className={styles.label} htmlFor="loginDropKey"> Market Type</label>
+                    <label className={styles.label} htmlFor="loginDropKey">{loginUiComponent.name}</label>
                     <select name="color" id="loginDropKey" className={styles.dropBox}>
-                        <option value="">---</option>
-                        <option value="yellow">Yellow</option>
-                        <option value="red">Red</option>
-                        <option value="green">Green</option>
+                        {(options)}
                     </select>
                 </div>
                 <div>
-                    <label className={styles.label} htmlFor="loginKey"> User to Login</label>
-                    <input type="email" id="loginKey" name="loginKey" className={styles.email}/>
+                    <label className={styles.label} htmlFor="loginKey">{loginUiComponent.login_type.auth_key_text}</label>
+                    <input type={loginUiComponent.login_type.auth_key_type} id="loginKey" name="loginKey" className={styles.email}/>
                 </div>
                 <div>
-                    <label className={styles.label} htmlFor="loginValue"> Password</label>
-                    <input type="password" id="loginValue" name="loginValue" className={styles.password}/>
+                    <label className={styles.label} htmlFor="loginValue"> {loginUiComponent.login_type.auth_value_type_text}</label>
+                    <input type={loginUiComponent.login_type.auth_value_type} id="loginValue" name="loginValue" className={styles.password}/>
                 </div>
 
                 <a href="#">
