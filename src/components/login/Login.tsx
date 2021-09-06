@@ -6,7 +6,7 @@ import styles from "./Login.module.css";
 export function Login() {
 
     // const gitHubUrl = "https://api.github.com/users/deekshasharma";
-    const slelectorLoginCriteria = "http://18.118.120.121:1337/slelector-login-criteria/001";
+    const slelectorLoginCriteria = "http://3.12.120.36:1337/slelector-login-criteria/001";
 
     useEffect(() => {
         getLoginConfiguration();
@@ -22,7 +22,7 @@ export function Login() {
     // console.log(loginUiComponent);
     const options: any[] = [];
     loginUiComponent.selector_login_criteria_values?.map(function (obj) {
-        options.push((<option value={obj.Name}>{obj.Name}</option>));
+        options.push((<option value={obj.name}>{obj.name}</option>));
     });
 
     return (

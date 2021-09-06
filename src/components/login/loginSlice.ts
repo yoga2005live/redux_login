@@ -10,7 +10,7 @@ interface loginUiComponent {
 }
 
 interface dropboxValues {
-    Name?: string
+    name?: string
     description?: string
     published_at?: string
     createdAt?: string
@@ -32,7 +32,7 @@ export const initialState: loginUiComponent = {
     // id: "",
     in_use: false,
     name: "",
-    selector_login_criteria_values: [{Name: "", description: ""}],
+    selector_login_criteria_values: [{name: "", description: ""}],
     login_type: {auth_key: "", auth_key_text: "", auth_key_type: "", auth_value_type: "", auth_value_type_text: ""},
     login_icon: ""
 };
